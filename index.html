@@ -1,0 +1,282 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aplic. Web de jQuery Mobile</title>
+<link href="jquery-mobile/jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
+
+<link href="css/mystyle.css" rel="stylesheet" type="text/css"/>
+<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+
+</head>
+ 
+<body> 
+
+<script language="javascript">
+ var AEdo = new Array();
+      var amun = new Array();
+	  
+	  amun[1] = new prop('01',1,'Zonas de uso residencial');
+	  amun[2] = new prop('02',2,'Zonas de uso residencial');
+	  amun[3] = new prop('03',3,'Zonas de uso residencial');
+	  amun[4] = new prop('04',4,'Zonas de uso residencial');
+	  amun[5] = new prop('05',5,'Zonas de uso residencial');
+	  amun[6] = new prop('06',6,'Zonas de uso residencial');
+	  
+      amun[7] = new prop('07',7,'Zonas de uso comercial');
+	  amun[8] = new prop('08',8,'Zonas de uso comercial');
+	  amun[9] = new prop('09',9,'Zonas de uso comercial');
+	  amun[10] = new prop('10',10,'Zonas de uso comercial');
+	  
+	  
+	  amun[11] = new prop('11',11,'Zonas de uso mixto');
+	       
+      amun[12] = new prop('12',12,'Eduación');   
+	  
+      amun[13] = new prop('13',13,'Salud');
+	      
+      amun[14] = new prop('14',14,'Zona de recreación pública');  
+	   
+      amun[15] = new prop('15',15,'Otros usos');
+	    
+      amun[16] = new prop('16',16,'Límite de zona de reglamentación especial - Zona Monumental');  
+	  
+      amun[17] = new prop('17',17,'Zona Turística (Existente / Comodo al mar)'); 
+	   
+      amun[18] = new prop('18',18,'Zona de Servicios (Estacionamiento, Campos deportivos, Servicios de playa / Solo estacionamiento)'); 
+	  
+      amun[19] = new prop('19',19,'Zona Paisajistica (Acceso viajes / Zona de riesgo Geotécnico)');  
+	  
+	  amun[20] = new prop('20',20,'Zona de Recreación Pública (Playas / Parques)');  
+	  
+	  
+	      AEdo[1] = "R-2";
+      
+          AEdo[2] = "R-3";
+      
+          AEdo[3] = "R-4";
+      
+          AEdo[4] = "R-5";
+      
+          AEdo[5] = "R-6";
+		  
+		  AEdo[6] = "R-8";
+		  	  
+		  AEdo[7] = "C-2";
+      
+          AEdo[8] = "C-3";
+      
+          AEdo[9] = "C-5";
+      
+          AEdo[10] = "C-E";
+      
+	     AEdo[11] = "II-R4";
+		 
+		 AEdo[12] = "E";
+
+          AEdo[13] = "H";
+		  
+		   AEdo[14] = "ZRP";
+		   
+		   AEdo[15] = "OU";
+		   
+		   AEdo[16] = "ZRE-ZM";
+		   
+		   AEdo[17] = "ZT-1";
+		   
+		    AEdo[18] = "ZS";
+			
+			 AEdo[19] = "ZP";
+			 
+			  AEdo[20] = "ZRP";
+		   
+
+ function prop(a,b,c){
+        this.Estado = a;
+        this.Municipio = b;
+        this.Descripcion = c;
+      }
+
+      function actualiza(qedo){
+        if( qedo.substring(0,1) == 0 )
+          vedo = qedo.substring(1,2)
+        else
+          vedo = qedo.substring(0,2)
+        document.frmguias.txtedo.value = AEdo[vedo];
+        document.frmguias.cmbedo.value = qedo;
+        var ntedo = 0;
+        document.frmguias.cmbmuni.length=0;
+        for(var x=1; x<=amun.length-1; x++){
+          if(amun[x].Estado == qedo){
+            document.frmguias.cmbmuni.length = document.frmguias.cmbmuni.length+1;
+            document.frmguias.cmbmuni.options[document.frmguias.cmbmuni.length-1].value=amun[x].Municipio;
+            document.frmguias.cmbmuni.options[document.frmguias.cmbmuni.length-1].text=amun[x].Descripcion;
+          }
+        }
+      }
+
+      function ok(){
+        if(document.frmguias.cmbmuni.length == 0){
+          alert("Lo sentimos, " + document.frmguias.txtedo.value + " no cuenta actualmente con guias");
+        }else{
+          if( document.frmguias.cmbmuni.selectedIndex == -1)
+            alert("Seleccione un municipio");
+          else{
+            if( document.frmguias.cmbmuni.options[document.frmguias.cmbmuni.selectedIndex].value != 0)
+              document.forms[0].submit();
+            else
+              alert("Seleccione un estado");
+          }
+        }
+      }
+  //-->
+  </script>
+
+<div data-role="page" id="page">
+  <div data-role="header" data-theme="c">
+	<img src="images/logo.png" width="100" height="50" alt="logo">
+    </div>
+    
+	<div data-role="content">	
+		
+      <center><h1>Bienvenido a la guía de trámites interactiva</h1></center>
+ 
+    <center><div style="width:70%;">
+     <p style="text-align:justify">Estimado vecino barranquino, sabemos que los trámites municipales son siempre engorrosos y muchas veces generam confusión. Con el objetivo de facilitarte la vida y agilizar los procesos que deseas realizar, hemos desarrollado esta plataforma diseñada especialmente para hacer tu consulta de una forma más intuitiva. ¡Piérdele el miedo a los trámites y comienza de una vez!</p>
+        
+     </div></center>
+ 
+
+    <a href="#page2">Continuar</a>
+    <a href="#page3">Preguntas frecuentes</a>
+
+
+ 
+ 
+     <!--   <ul data-role="listview">
+			<li><a href="#page2">Página dos</a></li>
+            <li><a href="#page3">Página tres</a></li>
+			<li><a href="#page4">Página cuatro</a></li>
+		</ul>	 -->
+        	
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="c">
+    <div data-role="navbar">
+    <ul>
+    <li> <a href="https://es-la.facebook.com/munidebarranco" target="_blank" data-role="button" data-icon="facebook"></a>  </li>
+    <li>  <a href="https://twitter.com/munibarranco" target="_blank" data-role="button" data-icon="twitter"></a></li>
+     <li>  <a href="https://plus.google.com/111673877417337915071/about?gl=pe&hl=es-419" target="_blank" data-role="button" data-icon="google"></a></li>
+      <li>  <a href="https://www.youtube.com/user/Barrancomunioficial" target="_blank" data-role="button" data-icon="youtube"></a></li>
+    </ul>
+   
+    </div>
+		  
+	</div>
+</div>
+
+<div data-role="page" id="page2">
+	<div data-role="header" data-theme="c">
+	<img src="images/logo.png" width="100" height="50" alt="logo">
+    </div>
+    
+    <center>
+      <img src="images/intro.png" alt="intro">
+    </center>
+  <center><h1>Bienvenido a la guía Interactiva de Trámites</h1></center>
+ 
+    <center><div style="width:70%;">
+     <p style="text-align:justify">Estimado vecino barranquino, hemos desarrollado esta plataforma para hacer tu consulta de una forma más intuitiva. ¡Piérdele el miedo a los trámites y comienza de una vez! </p>
+        
+     </div></center>
+     
+     <a href="#page4">Persona Natural</a>
+    <a href="#page4">Persona Jurídica</a>
+     
+     
+	<div data-role="footer" data-position="fixed" data-theme="c">
+    <div data-role="navbar">
+    <ul>
+    <li> <a href="https://es-la.facebook.com/munidebarranco" target="_blank" data-role="button" data-icon="facebook"></a>  </li>
+    <li>  <a href="https://twitter.com/munibarranco" target="_blank" data-role="button" data-icon="twitter"></a></li>
+     <li>  <a href="https://plus.google.com/111673877417337915071/about?gl=pe&hl=es-419" target="_blank" data-role="button" data-icon="google"></a></li>
+      <li>  <a href="https://www.youtube.com/user/Barrancomunioficial" target="_blank" data-role="button" data-icon="youtube"></a></li>
+    </ul>
+   
+    </div>
+		  
+	</div>
+</div>
+
+<div data-role="page" id="page3">
+	<div data-role="header" data-theme="c">
+	<img src="images/logo.png" width="100" height="50" alt="logo">
+    </div>
+	<div data-role="content">	
+		PREGUNTAS FRECUENTES
+	</div>
+    
+	<div data-role="footer" data-position="fixed" data-theme="c">
+		 <div data-role="navbar">
+    <ul>
+    <li> <a href="https://es-la.facebook.com/munidebarranco" target="_blank" data-role="button" data-icon="facebook"></a>  </li>
+    <li>  <a href="https://twitter.com/munibarranco" target="_blank" data-role="button" data-icon="twitter"></a></li>
+     <li>  <a href="https://plus.google.com/111673877417337915071/about?gl=pe&hl=es-419" target="_blank" data-role="button" data-icon="google"></a></li>
+      <li>  <a href="https://www.youtube.com/user/Barrancomunioficial" target="_blank" data-role="button" data-icon="youtube"></a></li>
+    </ul>
+   
+    </div>
+	</div>
+</div>
+
+<div data-role="page" id="page4">
+	<div data-role="header" data-theme="c">
+	<img src="images/logo.png" width="100" height="50" alt="logo">
+    </div>
+    
+	<div data-role="content">	
+    <img src="images/mapa.png" alt="mapa" width="1196" height="852" usemap="#Map">
+    <map name="Map">
+      <area shape="poly" coords="100,339,98,343,84,349,80,348,79,342,78,334,78,332,85,332,92,332,95,332,100,333" href="javascript:actualiza('01');" alt="R-2">
+      <area shape="poly" coords="83,326,88,325,95,326,100,325,101,322,101,315,101,311,93,311,84,312,79,313,79,322,79,317" href="javascript:actualiza('01');" alt="R-2">
+      <area shape="poly" coords="87,386,92,385,101,385,107,380,111,378,108,374,103,369,97,365,94,365,92,365" href="javascript:actualiza('01');" alt="R-2">
+      <area shape="poly" coords="101,391,104,395,104,402,106,410,112,409,124,407,126,406,131,404,134,401,138,400,141,398,143,396,134,393,129,389,125,388,121,386,115,387,111,389" href="javascript:actualiza('01');" alt="R-2">
+      <area shape="poly" coords="115,425,119,426,127,423,132,420,137,417,144,413,151,409,154,405,154,403,145,404,139,406,133,409,127,412,122,416,117,416,114,419" href="javascript:actualiza('01');" alt="R-2">
+      <area shape="poly" coords="746,488,755,482,759,477,766,473,767,465,769,461,778,462,789,466,796,472,799,477,804,486,806,495,813,505,815,511,821,517,815,519,807,523,776,514,757,501,751,500" href="javascript:actualiza('01');" alt="R-2">
+      <area shape="poly" coords="297,257,305,251,315,243,324,232,331,223,344,212,352,201,359,191,369,181,371,176,361,168,350,161,339,153,332,146,329,143" href="javascript:actualiza('02');" alt="R-3">
+      <area shape="poly" coords="380,163,385,159,389,153,396,146,406,137,413,132,422,115,430,106,435,99,430,90,427,87,417,87,410,96,401,104,386,112,378,116,370,117,358,113,353,121,350,127,346,131,341,131" href="javascript:actualiza('02');" alt="R-3">
+      <area shape="poly" coords="554,301,561,291,562,288,572,279,582,270,588,263,594,251,597,247,613,231,618,219,633,213,635,207,635,201,622,194,611,199,606,210,598,221,588,228,577,238,570,247,560,258,552,268,547,279,542,289,536,294,530,295" href="javascript:actualiza('04');" alt="R-5">
+      <area shape="poly" coords="302,394,312,388,330,384,354,382,369,380,372,376,385,375,390,371,394,367,395,355,395,343,395,329,394,320,389,313,380,311,361,315,350,319,335,323,327,327,310,328,303,330,298,335,290,342,280,346,276,350,258,358,269,347,262,359" href="javascript:actualiza('05');" alt="R-6">
+      <area shape="poly" coords="631,188,631,193,644,204,653,208,660,212,668,212,672,202,677,196,677,190,680,186,680,178,663,175,661,171,667,170,664,169,653,164" href="javascript:actualiza('03');" alt="R-4">
+      <area shape="poly" coords="229,519,224,520,221,523,222,532,228,540,228,548,231,550,237,547,238,543,230,530,233,527,233,536,235,539" href="javascript:actualiza('06');" alt="R-8">
+
+      <area shape="poly" coords="225,389,220,393,220,402,220,411,223,419,226,424,230,433,236,440,236,444,243,452,249,461,255,465,258,467,263,468" href="javascript:actualiza('06');" alt="R-8">
+      <area shape="poly" coords="500,233,504,231,509,227,514,223,518,217,516,213,511,209,508,206,503,206,499,210,497,216,492,221,490,223" href="javascript:actualiza('07');" alt="C-">
+      <area shape="poly" coords="466,264,469,261,473,251,479,245,479,235,482,234,486,230,493,233,494,240,493,244,484,255,478,259,475,264,474,267" href="javascript:actualiza('08');" alt="C-3">
+      <area shape="poly" coords="710,419,722,415,715,417,735,412,746,411,759,406,776,401,795,394,801,388,789,388,778,388,762,385,754,383,744,384,734,386,721,386,715,383,707,384,701,389,693,394,688,395,684,396,686,401,693,407,697,408,704,412,700,413,704,417,690,405" href="javascript:actualiza('09');" alt="C-5">
+      <area shape="poly" coords="300,288,306,289,311,288,318,288,325,284,325,280,315,281,307,282,301,281,294,281,291,281,291,285" href="javascript:actualiza('10');" alt="C-E">
+      
+      <area shape="poly" coords="327,290,331,287,336,287,347,288,357,286,365,286,372,286,380,285,384,285,375,284,365,284,354,285,347,285,338,283,332,281" href="javascript:actualiza('10');" alt="C-E">
+      <area shape="poly" coords="335,312,338,313,346,311,350,310,356,308,368,306,376,303,386,302,386,303,381,306,375,309,364,311,357,311,353,312,349,315,344,315,339,318,337,317,336,316,342,311,357,306,368,304,378,303,380,302" href="javascript:actualiza('10');" alt="C-E">
+      <area shape="poly" coords="596,162,559,134,569,119,578,113,584,105,591,106,597,110,632,130" href="javascript:actualiza('11');" alt="E">
+    </map>
+  </div>
+    
+	<div data-role="footer" data-position="fixed" data-theme="c">
+		 <div data-role="navbar">
+    <ul>
+    <li> <a href="https://es-la.facebook.com/munidebarranco" target="_blank" data-role="button" data-icon="facebook"></a>  </li>
+    <li>  <a href="https://twitter.com/munibarranco" target="_blank" data-role="button" data-icon="twitter"></a></li>
+     <li>  <a href="https://plus.google.com/111673877417337915071/about?gl=pe&hl=es-419" target="_blank" data-role="button" data-icon="google"></a></li>
+      <li>  <a href="https://www.youtube.com/user/Barrancomunioficial" target="_blank" data-role="button" data-icon="youtube"></a></li>
+    </ul>
+   
+    </div>
+	</div>
+    
+</div>
+
+</body>
+
+
+</html>
