@@ -1,0 +1,333 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Aplic. Web de jQuery Mobile</title>
+<!--<link href="jquery-mobile/jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/> -->
+<!--<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script> 
+ -->
+ 
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" /> 
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+<style>
+
+img.ri
+{
+	position: absolute;
+	max-width: 80%;
+	top: 10%;
+	left: 10%;
+	
+}
+
+img.ri:empty
+{
+	top: 40%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+@media screen and (orientation: portrait) {
+  img.ri { max-width: 90%; }
+}
+
+@media screen and (orientation: landscape) {
+  img.ri { max-height: 90%; }
+}
+
+
+
+img.ri2
+{
+	position: absolute;
+	max-width: 80%;
+	top: 10%;
+	left: 10%;
+	
+}
+
+img.ri2:empty
+{
+	top: 58%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+@media screen and (orientation: portrait) {
+  img.ri2 { max-width: 90%; }
+}
+
+@media screen and (orientation: landscape) {
+  img.ri2 { max-height: 90%; }
+}
+
+
+
+img.ri3
+{
+	position: absolute;
+	max-width: 80%;
+	top: 10%;
+	left: 10%;
+	
+}
+
+img.ri3:empty
+{
+	top: 45%;
+	left: 23%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+@media screen and (orientation: portrait) {
+  img.ri3 { max-width: 90%; }
+}
+
+@media screen and (orientation: landscape) {
+  img.ri3 { max-height: 90%; }
+}
+
+
+
+</style>
+
+
+<script>
+
+$( document ).on( "pagecreate", function() {
+    $( ".photopopup" ).on({
+        popupbeforeposition: function() {
+            var maxHeight = $( window ).height() - 60 + "px";
+            $( ".photopopup img" ).css( "max-height", maxHeight );
+        }
+    });
+});
+
+</script>
+
+
+<script language="javascript"> 
+
+function popup(url,width,height){ 
+
+window.open(url,"def","width="+width+",height="+height)
+
+} 
+
+</script> 
+
+
+
+
+</head> 
+<body> 
+
+
+<script language="javascript">
+ var AEdo = new Array();
+      var amun = new Array();
+	  
+	  amun[1] = new prop('01',1,'Item01');
+      amun[2] = new prop('01',2,'Item02');
+	  amun[3] = new prop('01',3,'Item03');
+      
+      amun[4] = new prop('02',4,'Item01');
+      
+      amun[5] = new prop('02',10,'Item02');
+      
+      amun[6] = new prop('02',5,'Item03');
+      
+      amun[7] = new prop('02',6,'Item04');
+      
+      amun[8] = new prop('03',7,'Item01');
+      
+      amun[9] = new prop('03',11,'Item02');
+
+	  
+	    AEdo[1] = "Eduación";
+      
+          AEdo[2] = "Zona de uso mixto";
+      
+          AEdo[3] = "Zona de recreación pública";
+
+
+ function prop(a,b,c){
+        this.Estado = a;
+        this.Municipio = b;
+        this.Descripcion = c;
+      }
+
+      function actualiza(qedo){
+        if( qedo.substring(0,1) == 0 )
+          vedo = qedo.substring(1,2)
+        else
+          vedo = qedo.substring(0,2)
+        document.frmguias.txtedo.value = AEdo[vedo];
+        document.frmguias.cmbedo.value = qedo;
+        var ntedo = 0;
+        document.frmguias.cmbmuni.length=0;
+        for(var x=1; x<=amun.length-1; x++){
+          if(amun[x].Estado == qedo){
+            document.frmguias.cmbmuni.length = document.frmguias.cmbmuni.length+1;
+            document.frmguias.cmbmuni.options[document.frmguias.cmbmuni.length-1].value=amun[x].Municipio;
+            document.frmguias.cmbmuni.options[document.frmguias.cmbmuni.length-1].text=amun[x].Descripcion;
+          }
+        }
+      }
+
+      function ok(){
+        if(document.frmguias.cmbmuni.length == 0){
+          alert("Lo sentimos, " + document.frmguias.txtedo.value + " no cuenta actualmente con guias");
+        }else{
+          if( document.frmguias.cmbmuni.selectedIndex == -1)
+            alert("Seleccione un municipio");
+          else{
+            if( document.frmguias.cmbmuni.options[document.frmguias.cmbmuni.selectedIndex].value != 0)
+              document.forms[0].submit();
+            else
+              alert("Seleccione un estado");
+          }
+        }
+      }
+  //-->
+  </script>
+
+
+
+<!--<div data-role="page" id="page" style="background-image: url('images/01.png'); background-attachment: fixed; background-repeat: no-repeat; background-size: 100% 100%;">
+	<div data-role="header">
+	</div>
+    
+	<div data-role="content">	
+	</div>
+	<div data-role="footer">
+
+	</div>
+</div> -->
+
+<div data-role="page" id="page2" style="background-image: url('images/02.png'); background-attachment: fixed; background-repeat: no-repeat; background-size: 100% 100%;">
+
+	<div data-role="content">
+        
+	</div>
+    
+	<div data-role="footer" data-position="fixed">
+    
+  <!--  <div class="ui-field-contain">
+    <button id="prepend" data-mini="true" data-inline="true">Prepend</button>
+    <label for="append" class="ui-hidden-accessible">Action</label>
+    <button id="append" data-mini="true" data-inline="true">Append</button>
+    </div> -->
+
+<center>
+<div>
+
+  <a href="#page3" data-role="button" style="background-image:url(images/PersonaN_Boton.png);background-repeat: no-repeat;background-size: 100% 100%;width:216px; height:72px;"></a> 
+ 	<a href="#" data-role="button" style="background-image:url(images/PersonaJ_Boton.png);background-repeat: no-repeat;background-size: 100% 100%; width:216px; height:72px;"></a>
+
+</div>
+</center>
+    
+
+    
+	</div>
+</div>
+
+<div data-role="page" id="page3" style="background-image: url('images/03_Sin botones.png'); background-attachment: fixed; background-repeat: no-repeat; background-size: 100% 100%;">
+	
+	<div data-role="content">	
+    <img src="images/botones.png" alt="botones" usemap="#Map" class="ri" style="max-width:100%;height:auto;";>
+    <map name="Map">
+      <area shape="rect" coords="635,32,863,95" href="#page4" alt="tributos">
+      <area shape="rect" coords="24,113,251,172" href="#page6" alt="edificacion">
+      <area shape="rect" coords="341,113,566,170" href="#page6" alt="autorizaciones">
+      <area shape="rect" coords="640,113,861,172" href="#page6" alt="defensa_civil">
+    </map>
+     </div>
+    
+  
+</div>
+
+<div data-role="page" id="page4" style="background-image: url('images/fondo2.png'); background-attachment: fixed; background-repeat: no-repeat; background-size: 100% 100%;">
+	<div data-role="header">
+		
+	</div>
+	<div data-role="content">	
+		 <img src="images/lista.png" alt="lista" usemap="#Map2" class="ri2" style="max-width:100%;height:auto;">
+         <map name="Map2">
+           <area shape="rect" coords="13,28,794,64" href="#page5" alt="lista1">
+         </map>
+               
+	</div>
+	
+</div>
+
+
+<div data-role="page" id="page5" style="background-image: url('images/nuevo_fondo_mapa.png'); background-attachment: fixed; background-repeat: no-repeat; background-size: 100% 100%;">
+	<div data-role="header">
+		
+	</div>
+	<div data-role="content">	
+    
+
+<div data-role="popup" id="popupPhotoLandscape" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/07_popup copy.png" alt="Photo landscape">
+</div>
+	
+     
+     
+     		 <img src="images/mapa5.png" alt="lista" class="ri2" style="max-width:100%;height:auto;">
+ <a href="#popupPhotoLandscape" style="background-image:url(images/Boton_11.png);background-repeat: no-repeat;background-size: 100% 100%;position: absolute;max-width: 80%;top: 52%;left: 44%;" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" ></a>
+     
+     
+	</div>
+    
+	
+</div>
+
+
+<div data-role="page" id="page6" style="background-image: url('images/fondo_mapa_sinboton.png'); background-attachment: fixed; background-repeat: no-repeat; background-size: 100% 100%;">
+	
+	<div data-role="content">	
+	
+          
+  </div>
+  
+  <div data-role="footer" data-position="fixed">
+ 
+<center>
+<div>
+
+  <a href="#page5" data-role="button" >Continuar</a> 
+
+
+</div>
+</center>
+    
+
+    
+	</div>
+	
+</div>
+
+
+</body>
+</html>
